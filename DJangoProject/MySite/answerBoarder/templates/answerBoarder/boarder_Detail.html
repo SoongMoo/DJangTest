@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#modify").click(function(){
+		location.href="../../BoardModify?BOARD_NUM={{answerBoarder.BOARD_NUM}}";
+	});
+	$("#BoardReply").click(function(){
+		location.href="../../BoardReply?BOARD_NUM={{answerBoarder.BOARD_NUM}}";
+	});
+});
+</script>
+</head>
+<body>
+번호 : {{ answerBoarder.BOARD_NUM }} <br />
+글쓴이 :  {{ answerBoarder.BOARD_NAME }} <br />
+제목 :  {{ answerBoarder.BOARD_SUBJECT }} <br />
+내용 : {{ answerBoarder.BOARD_CONTENT }} <br />
+등록일 :  {{answerBoarder.BOARD_DATE | date:"Y-m-d"}} <br />
+방문자 수 :  {{ BOARD_READCOUNT }}<br />
+등록된 파일 : <br />
+          {% for file in file_results %}
+				<a href = "/media/uploads/{{file.StorefileNames}}">  {{file.fileNames}} </a> <br/>
+          {% endfor %}
+<input type="button" name="BoardReply" id = "BoardReply" value="답변">
+<input type="button" name="modify" id = "modify" value="수정">
+<input type="button"  value="취소" onclick="javascript:history.back();">
+</body>
+</html>

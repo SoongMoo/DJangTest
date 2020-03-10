@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form name = "frm" id="frm" method = "post" action="answerBoardWritePro" enctype="multipart/form-data">{% csrf_token %}
+ <table width = 600 align = "center" border = 1 >
+ 	<tr align="center" valign="middle">
+ 		<td colspan="2">답변형 자료실</td>
+ 	</tr>
+	{{ f.as_table }}
+ 	<tr>
+		<td colspan = 2>
+			{% if error %}
+				<h3 style="color:red">{{error}}</h3>
+			{% endif %}
+ 		</td>
+
+	</tr>
+	<tr>
+		<td colspan = 2>
+			<input type= "submit" value="등록" />
+			<input type= "button" value="뒤로" onclick="javascript:history.back()"/>
+ 		</td>
+	</tr>
+ </table>
+</form>
+</body>
+</html>

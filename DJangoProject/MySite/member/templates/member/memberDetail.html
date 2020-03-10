@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#modify").click(function(){
+		location.href="memberModify";
+	})
+	$("#memDel").click(function(){
+		location.href="memberDelete";
+	})
+});
+</script>
+</head>
+<body>
+이름 : {{ member.USER_ID }} <br />
+아이디 :  {{ member.USER_NAME }} <br />
+이메일 :  {{ member.USER_EMAIL }} <br />
+생년원일 :  {{member.USER_BIRTH | date:"Y-m-d"}} <br />
+{% if  member.USER_GENDER == 'M' %}
+성별 : 남 <br />
+{% else %}
+성별 : 여 <br />
+{% endif %}
+연락처 1 :  {{ member.USER_PH1 }} <br />
+연락처 2 :  {{ member.USER_PH2 }} <br />
+등록일 :  {{member.USER_REGIST | date:"Y-m-d f"}} <br />
+주소 :  {{ member.USER_ADDR }} <br />
+{% if num != 1 %}
+<input type="button" name="modify" id = "modify" value="수정">
+<input type="button"  value="취소" onclick="javascript:history.back();">
+<input type="button" name="memDel" id = "memDel" value="탈퇴">
+{% endif %}
+</body>
+</html>

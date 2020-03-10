@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><th>아이디</th><th>이메일</th><th>이름</th><th>가입일</th></tr>
+{% for member in contacts %}
+<tr><th><a href="memberInfo/{{member.USER_ID}}">{{member.USER_ID}}</a></th><th>{{member.USER_EMAIL}}</th><th>{{member.USER_NAME}}</th><th>{{member.USER_REGIST | date:"Y-m-d  f"}}</th></tr>
+{% endfor %}
+<tr alight="center" height=20 >
+	<td colspan = 3>
+					{% if not contacts.has_previous  %}
+	                [이전]&nbsp;
+	                {% else  %}
+	                [ <a href="memberlist?page={{ contacts.previous_page_number }}">이전</a> ]&nbsp;
+	                {% endif %}
+	                
+	                {% for i in p_range %}
+	                	[ <a href="memberlist?page={{i}}" >{{ i }}</a> ]
+	                {% endfor %}
+	                
+	                {% if not contacts.has_next %}
+	                [이후]&nbsp;
+	                {% else %}
+	                [ <a href="memberlist?page={{contacts.next_page_number }}">이후</a> ]&nbsp;
+	                {% endif %}
+	</td>
+<tr>
+</table>
+</body>
+</html>

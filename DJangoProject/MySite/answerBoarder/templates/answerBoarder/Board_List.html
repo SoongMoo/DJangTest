@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table>
+<tr><th>번호</th><th>제목</th><th>이름</th><th>등록일</th></tr>
+{% for answerBoarder in contacts %}
+<tr><th><a href="AnswerBoarderDetail/{{answerBoarder.BOARD_NUM}}">{{answerBoarder.BOARD_NUM}}</a></th>
+    <th>{{answerBoarder.BOARD_SUBJECT}}</th>
+    <th>{{answerBoarder.BOARD_NAME}}</th>
+    <th>{{answerBoarder.BOARD_DATE | date:"Y-m-d"}}</th>
+</tr>
+{% endfor %}
+<tr alight="center" height=20 >
+	<td colspan = 3>
+					{% if not contacts.has_previous  %}
+	                [이전]&nbsp;
+	                {% else  %}
+	                [ <a href="answerBoardList?page={{ contacts.previous_page_number }}">이전</a> ]&nbsp;
+	                {% endif %}
+	                
+	                {% for i in p_range %}
+	                	[ <a href="answerBoardList?page={{i}}" >{{ i }}</a> ]
+	                {% endfor %}
+	                
+	                {% if not contacts.has_next %}
+	                [이후]&nbsp;
+	                {% else %}
+	                [ <a href="answerBoardList?page={{contacts.next_page_number }}">이후</a> ]&nbsp;
+	                {% endif %}
+	</td>
+<tr>
+</table>
+<a HREF="answerBoard"> 글쓰기 </a>
+</body>
+</html>

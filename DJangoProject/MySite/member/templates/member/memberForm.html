@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js" ></script>
+</head>
+<body>
+<form name = "frm" id="frm" method = "post" action="memberJoinAction">{% csrf_token %}
+ <table width = 600 align = "center" border = 1 >
+	{{ f.as_table }}
+ 	<tr>
+		<td colspan = 2>
+			{% if error %}
+				<h3 style="color:red">{{error}}</h3>
+			{% endif %}
+ 		</td>
+
+	</tr>
+	<tr>
+		<td colspan = 2>
+			<input type= "submit" value="가입완료" />
+			<input type= "reset" value="다시 입력" />
+			<input type= "button" value="가입 안함" />
+ 		</td>
+	</tr>
+
+ </table>
+</form>
+</body>
+</html>

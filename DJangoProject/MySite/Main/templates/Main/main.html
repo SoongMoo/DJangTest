@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$("#id_USER_ID").focus();
+});
+</script>
+</head>
+<body>
+{% if request.session.member %}
+<!-- 로그인 되었을 때 -->
+<a href = "member/memberDetail">내 정보</a>
+<a href = "logout" >로그아웃</a>
+<a href = "member/memberlist">회원리스트</a>
+<a href = "comment/commentList">댓글 게시판</a>
+<a href = "board/answerBoardList">답변형 자료실</a>
+<a href = "goodsList">상품목록</a>
+<a href = "memberAllMail">단체 메일보내기</a>
+<a href = "survey" >설문지</a>
+{% else %}
+<!-- 로그인 되지 않았을 때 -->
+<form id="frm" name="frm" action="loginAction" method="post">{% csrf_token %}
+<table border =1>
+<tr><td>
+		자동로그인<input type="checkbox" name="autoLogin" />
+	</td>
+	<td>
+	
+	<input type="checkbox" name="idStore" {% if context %} checked  {% endif %} />아이디체크
+
+	</td>
+</tr>
+{{ f.as_table }}
+{% if error %}
+<tr>
+	<td colspan=2 ><div id="idmsg">
+						<h3 style="color:red">{{error}}</h3>
+	</div></td>
+</tr>
+{% endif %}
+<tr>
+	<td colspan=2 ><input type="submit" id="btn" value="로그인" /></td>
+</tr>
+<tr><td colspan=2>
+		<a href="#">아이디 찾기</a>|<a href="#">비밀번호 찾기</a>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="member/agree">회원가입</a>
+    </td>
+</tr>
+</table>
+</form>
+{% endif %}
+</body>
+</html>

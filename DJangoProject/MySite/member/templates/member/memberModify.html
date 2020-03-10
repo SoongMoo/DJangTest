@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js" ></script>
+<script type="text/javascript">
+$(function(){
+	$("#memPw").click(function(){
+		location.href="changePassword";
+	})
+});	
+</script>
+</head>
+<body>
+<form name = "frm" id="frm" method = "post" action="memberModifyPro">{% csrf_token %}
+ <table width = 600 align = "center" border = 1 >
+<tr><th><label for="id_USER_ID">사용자 아이디:</label></th><td>{{ member.USER_ID }}</td></tr>
+<tr><th><label for="id_USER_PW">사용자 비밀번호:</label></th><td><input type="password" name="USER_PW" maxlength="100" required id="id_USER_PW"></td></tr>
+<tr><th><label for="id_USER_NAME">사용자 이름:</label></th><td>{{ member.USER_NAME }}</td></tr>
+<tr><th><label for="id_USER_BIRTH">사용자 생년월일:</label></th><td><input type="text" name="USER_BIRTH" required id="id_USER_BIRTH" value="{{member.USER_BIRTH | date:"Y-m-d"}}"><br>
+		<span class="helptext">yyyy-MM-dd 형식으로 입력해주세요</span></td></tr>
+<tr><th><label for="id_USER_GENDER">성별:</label></th><td>{% if  member.USER_GENDER == 'M' %} 남 {% else %} 여 {% endif %}</td></tr>
+<tr><th><label for="id_USER_EMAIL">사용자 이메일:</label></th><td><input type="email" name="USER_EMAIL" required id="id_USER_EMAIL" value="{{ member.USER_EMAIL }}"></td></tr>
+<tr><th><label for="id_USER_ADDR">사용자 주소:</label></th><td><input type="text" name="USER_ADDR" maxlength="100" required id="id_USER_ADDR" value="{{ member.USER_ADDR }}"></td></tr>
+<tr><th><label for="id_USER_PH1">사용자  연락처1:</label></th><td><input type="text" name="USER_PH1" maxlength="13" required id="id_USER_PH1" value="{{ member.USER_PH1 }}"></td></tr>
+<tr><th><label for="id_USER_PH2">사용자 연락처2:</label></th><td><input type="text" name="USER_PH2" maxlength="13" id="id_USER_PH2" value="{{ member.USER_PH2 }}"></td></tr>
+{% if error %}
+ 	<tr>
+		<td colspan = 2>
+				<h3 style="color:red">{{error}}</h3>
+ 		</td>
+	</tr>
+{% endif %}
+	<tr>
+		<td colspan = 2>
+			<input type= "submit" value="수 정" />
+			<input type= "reset" value="다시 입력" />
+			<input type= "button" value="비밀번호변경" id="memPw"/>
+ 		</td>
+	</tr>
+ </table>
+</form>
+</body>
+</html>
